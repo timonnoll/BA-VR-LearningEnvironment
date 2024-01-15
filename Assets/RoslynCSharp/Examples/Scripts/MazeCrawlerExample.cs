@@ -120,7 +120,7 @@ namespace RoslynCSharp.Example
             {
                 // Load the template code
                 runCrawlerInput.text = mazeCodeTemplate.text;
-            }            
+            }
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace RoslynCSharp.Example
                 //try
                 {
                     // Compile code
-                    ScriptType type = domain.CompileAndLoadMainSource(cSharpSource, ScriptSecurityMode.UseSettings, assemblyReferences );
+                    ScriptType type = domain.CompileAndLoadMainSource(cSharpSource, ScriptSecurityMode.UseSettings, assemblyReferences);
 
                     // Check for null
                     if (type == null)
@@ -159,7 +159,7 @@ namespace RoslynCSharp.Example
                         throw new Exception("Maze crawler code must define a single type that inherits from 'RoslynCSharp.Example.MazeCrawler'");
 
 
-                    
+
 
                     // Create an instance
                     activeCrawlerScript = type.CreateInstance(mazeMouse);
@@ -191,7 +191,7 @@ namespace RoslynCSharp.Example
         /// </summary>
         public void StopCrawler()
         {
-            if(activeCrawlerScript != null)
+            if (activeCrawlerScript != null)
             {
                 // Get the maze crawler instance
                 MazeCrawler mazeCrawler = activeCrawlerScript.GetInstanceAs<MazeCrawler>(false);
@@ -210,7 +210,7 @@ namespace RoslynCSharp.Example
         /// </summary>
         public void RestartCrawler()
         {
-            if(activeCrawlerScript != null)
+            if (activeCrawlerScript != null)
             {
                 ScriptType type = activeCrawlerScript.ScriptType;
 

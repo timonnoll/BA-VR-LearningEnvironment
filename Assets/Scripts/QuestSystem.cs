@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using RoslynCSharp;
+using RoslynCSharp.Compiler;
+using System;
 
 namespace TN
 {
@@ -20,21 +23,24 @@ namespace TN
         public TextMeshProUGUI activeReturnName;
 
 
-        private int questProgress = 0;
+        private int activeQuest = 0;
 
         public void ShowQuest()
         {
-            quests[questProgress].isActive = true;
-            activeTitle.text = quests[questProgress].title;
-            activeDescription.text = quests[questProgress].description;
+            Quest quest = quests[activeQuest];
+
+            quests[activeQuest].isActive = true;
+
+            activeTitle.text = quest.title;
+            activeDescription.text = quest.description;
 
             questWindow.SetActive(true);
 
-            if (quests[questProgress].isCodingQuest)
+            if (quest.isCodingQuest)
             {
-                activeMethodName.text = quests[questProgress].methodName;
-                activeVariables.text = quests[questProgress].variables;
-                activeReturnName.text = quests[questProgress].returnName;
+                activeMethodName.text = quest.methodName;
+                activeVariables.text = quest.variables;
+                activeReturnName.text = quest.returnName;
 
                 codingWindow.SetActive(true);
             }
@@ -43,12 +49,12 @@ namespace TN
 
         }
 
-        public void UpdateQuestProgress()
+        public void UpdateActiveQuest()
         {
-            quests[questProgress].Complete();
-            if (quests[questProgress + 1] != null)
+            quests[activeQuest].Complete();
+            if (quests[activeQuest + 1] != null)
             {
-                questProgress += 1;
+                activeQuest += 1;
                 ShowQuest();
             }
             else
@@ -56,6 +62,34 @@ namespace TN
                 codingWindow.SetActive(false);
                 activeTitle.text = "Congratulations!";
                 activeDescription.text = "You have completed all tasks";
+            }
+        }
+
+        public Quest GetActiveQuest()
+        {
+            return quests[activeQuest];
+        }
+
+        public void EvaluateQuestScript(ScriptProxy activeQuestScript)
+        {
+            Quest quest = GetActiveQuest();
+            int result;
+
+            switch (quest.title)
+            {
+                case "Pincode":
+                    {
+                        result = (int)activeQuestScript.Call("GetOddNumbers");
+                        if (result == 5)
+                        {
+                            UpdateActiveQuest();
+                            Debug.Log("true");
+                        }
+                        Debug.Log("false");
+                        break;
+                    }
+                default:
+                    throw new Exception("Can't find Method");
             }
         }
 

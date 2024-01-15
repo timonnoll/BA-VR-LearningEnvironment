@@ -15,12 +15,12 @@ namespace TN
         // reference to child text component
         private TextMeshProUGUI textComponent;
         private Button button;
-        private CodingKeyboard codingKeyboard;
+        private ScriptEditor scriptEditor;
 
         private void Awake()
         {
             button = GetComponent<Button>();
-            codingKeyboard = GetComponentInParent<CodingKeyboard>();
+            scriptEditor = GetComponentInParent<ScriptEditor>();
         }
 
         void Start()
@@ -34,7 +34,7 @@ namespace TN
 
         public void onClickAppendValue()
         {
-            codingKeyboard.AppendValue(this);
+            scriptEditor.AppendValue(this);
         }
 
     }

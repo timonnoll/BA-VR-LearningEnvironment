@@ -17,7 +17,7 @@ namespace TN
 
         public Function buttonFunction;
         private Button button;
-        private CodingKeyboard codingKeyboard;
+        private ScriptEditor scriptEditor;
 
 
 
@@ -27,12 +27,12 @@ namespace TN
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(FireActionKey);
 
-            codingKeyboard = GetComponentInParent<CodingKeyboard>();
+            scriptEditor = GetComponentInParent<ScriptEditor>();
         }
 
         private void FireActionKey()
         {
-            codingKeyboard.ActionKey(this);
+            scriptEditor.ActionKey(this);
         }
     }
 

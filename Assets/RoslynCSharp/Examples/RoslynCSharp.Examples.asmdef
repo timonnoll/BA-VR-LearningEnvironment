@@ -1,17 +1,19 @@
 {
     "name": "RoslynCSharp.Examples",
+    "rootNamespace": "",
     "references": [
         "RoslynCSharp",
-        "RoslynCSharp.Compiler"
+        "RoslynCSharp.Compiler",
+        "dotnow",
+        "dotnow.Integration"
     ],
-    "optionalUnityReferences": [],
-    "includePlatforms": [
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }
