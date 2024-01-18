@@ -14,7 +14,7 @@ namespace TN
         public string description;
         public string methodName;
 
-        [Multiline(4)]
+        [Multiline(7)]
         public string variables;
         public string returnName;
 

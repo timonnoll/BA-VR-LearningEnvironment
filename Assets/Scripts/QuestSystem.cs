@@ -70,7 +70,7 @@ namespace TN
             return quests[activeQuest];
         }
 
-        public void EvaluateQuestScript(ScriptProxy activeQuestScript)
+        public bool EvaluateQuestScript(ScriptProxy activeQuestScript)
         {
             Quest quest = GetActiveQuest();
             int result;
@@ -84,9 +84,13 @@ namespace TN
                         {
                             UpdateActiveQuest();
                             Debug.Log("true");
+                            return true;
                         }
-                        Debug.Log("false");
-                        break;
+                        else
+                        {
+                            Debug.Log("false");
+                            return false;
+                        }
                     }
                 default:
                     throw new Exception("Can't find Method");

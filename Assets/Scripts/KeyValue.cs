@@ -10,6 +10,7 @@ namespace TN
     public class KeyValue : MonoBehaviour
     {
         // default value for this key
+        [Multiline(4)]
         public string value;
 
         // reference to child text component

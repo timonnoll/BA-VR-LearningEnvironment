@@ -22,6 +22,9 @@ namespace TN
 
         private int currentCaretPosition = 0;
 
+        private bool buildValid = false;
+
+        private void UpdateCaretPosition(int newPos) => inputField.caretPosition = newPos;
 
         public void AppendValue(KeyValue keyValue)
         {
@@ -36,34 +39,6 @@ namespace TN
             currentCaretPosition += value.Length;
 
             UpdateCaretPosition(currentCaretPosition);
-        }
-
-        public void Help()
-        {
-            questSystem.ShowQuest();
-        }
-
-        public void Enter()
-        {
-            string enterString = "\n";
-
-            currentCaretPosition = inputField.caretPosition;
-
-            inputField.text = inputField.text.Insert(currentCaretPosition, enterString);
-            currentCaretPosition += enterString.Length;
-
-            UpdateCaretPosition(currentCaretPosition);
-        }
-
-        private void UpdateCaretPosition(int newPos) => inputField.caretPosition = newPos;
-
-        public void Backspace()
-        {
-
-        }
-        public void Build()
-        {
-            scriptBuilder.CreateAndCompileScript(inputField.text);
         }
 
         public void ActionKey(KeyAction keyAction)
@@ -96,10 +71,114 @@ namespace TN
                         break;
                     }
 
+                case KeyAction.Function.Space:
+                    {
+                        Space();
+                        break;
+                    }
+
+                case KeyAction.Function.Next:
+                    {
+                        MoveCaretRight();
+                        break;
+                    }
+
+                case KeyAction.Function.Previous:
+                    {
+                        MoveCaretLeft();
+                        break;
+                    }
+                case KeyAction.Function.Clear:
+                    {
+                        Clear();
+                        break;
+                    }
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
+        public void Help()
+        {
+            questSystem.ShowQuest();
+        }
+
+        public void Enter()
+        {
+            string enterString = "\n";
+
+            currentCaretPosition = inputField.caretPosition;
+
+            inputField.text = inputField.text.Insert(currentCaretPosition, enterString);
+            currentCaretPosition += enterString.Length;
+
+            UpdateCaretPosition(currentCaretPosition);
+        }
+
+
+        public void Backspace()
+        {
+            currentCaretPosition = inputField.caretPosition;
+
+            if (currentCaretPosition > 0)
+            {
+                --currentCaretPosition;
+                inputField.text = inputField.text.Remove(currentCaretPosition, 1);
+                UpdateCaretPosition(currentCaretPosition);
+            }
+        }
+        public void Build()
+        {
+            buildValid = scriptBuilder.CreateAndCompileScript(inputField.text);
+
+            if (buildValid)
+                Clear();
+        }
+
+        /// Insert a space character.
+        public void Space()
+        {
+            currentCaretPosition = inputField.caretPosition;
+            inputField.text = inputField.text.Insert(currentCaretPosition++, " ");
+
+            UpdateCaretPosition(currentCaretPosition);
+        }
+
+        /// Move caret to the left.
+        public void MoveCaretLeft()
+        {
+            currentCaretPosition = inputField.caretPosition;
+
+            if (currentCaretPosition > 0)
+            {
+                --currentCaretPosition;
+                UpdateCaretPosition(currentCaretPosition);
+            }
+        }
+
+        /// Move caret to the right.
+        public void MoveCaretRight()
+        {
+            currentCaretPosition = inputField.caretPosition;
+
+            if (currentCaretPosition < inputField.text.Length)
+            {
+                ++currentCaretPosition;
+                UpdateCaretPosition(currentCaretPosition);
+            }
+        }
+
+        public void Clear()
+        {
+            if (inputField.caretPosition != 0)
+            {
+                inputField.MoveTextStart(false);
+            }
+            inputField.text = "";
+            currentCaretPosition = inputField.caretPosition;
+        }
+
+
     }
 
 }

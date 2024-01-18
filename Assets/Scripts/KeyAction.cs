@@ -10,9 +10,13 @@ namespace TN
         public enum Function
         {
             Help,
+            Space,
             Backspace,
             Enter,
             Build,
+            Next,
+            Previous,
+            Clear
         }
 
         public Function buttonFunction;

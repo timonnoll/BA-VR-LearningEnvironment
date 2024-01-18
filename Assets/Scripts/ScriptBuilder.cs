@@ -15,6 +15,7 @@ namespace TN
         private string activeSourceCode = null;
         private ScriptProxy activeQuestScript = null;
         private ScriptDomain domain = null;
+
         public QuestSystem questSystem;
 
         public AssemblyReferenceAsset[] assemblyReferences;
@@ -29,7 +30,7 @@ namespace TN
                 domain.RoslynCompilerService.ReferenceAssemblies.Add(reference);
         }
 
-        public void CreateAndCompileScript(string playerWrittenCode)
+        public bool CreateAndCompileScript(string playerWrittenCode)
         {
             string sourceCode = @"
             using System;
@@ -78,7 +79,7 @@ namespace TN
                 activeQuestScript = type.CreateInstance();
                 activeSourceCode = sourceCode;
             }
-            questSystem.EvaluateQuestScript(activeQuestScript);
+            return questSystem.EvaluateQuestScript(activeQuestScript);
         }
 
         public void ResetQuestScript()
