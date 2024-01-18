@@ -16,6 +16,8 @@ namespace TN
         public TMP_InputField inputField;
         public Image Keyboard;
 
+        public QuestSystem questSystem;
+
         public ScriptBuilder scriptBuilder;
 
         private int currentCaretPosition = 0;
@@ -38,7 +40,7 @@ namespace TN
 
         public void Help()
         {
-
+            questSystem.ShowQuest();
         }
 
         public void Enter()

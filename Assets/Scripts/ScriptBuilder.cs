@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using dotnow;
 
 namespace TN
 {
@@ -14,7 +15,6 @@ namespace TN
         private string activeSourceCode = null;
         private ScriptProxy activeQuestScript = null;
         private ScriptDomain domain = null;
-
         public QuestSystem questSystem;
 
         public AssemblyReferenceAsset[] assemblyReferences;
@@ -33,20 +33,24 @@ namespace TN
         {
             string sourceCode = @"
             using System;
+            using System.Collections;
+            using System.Collections.Generic;
             using UnityEngine;
             namespace TN
             {
-                class Script : QuestScript
-                {"
-                    + questSystem.activeVariables.text + @"
-                    public override " + questSystem.activeMethodName.text + @"
+                class Script
+                {
+                    " + questSystem.activeVariables.text + @"
+                    public " + questSystem.activeMethodName.text + @"
                     {
                         " + playerWrittenCode + @"
 
-                        " + questSystem.activeReturnName + @"
+                        " + questSystem.activeReturnName.text + @"
                     }
                 }
             }";
+
+            Debug.Log(sourceCode);
 
             if (activeSourceCode != sourceCode || activeQuestScript == null)
             {
@@ -55,7 +59,6 @@ namespace TN
 
                 // Compile code
                 ScriptType type = domain.CompileAndLoadMainSource(sourceCode, ScriptSecurityMode.UseSettings, assemblyReferences);
-
                 // Check for null
                 if (type == null)
                 {
@@ -68,8 +71,8 @@ namespace TN
                 }
 
                 // Check for base class
-                if (type.IsSubTypeOf<QuestScript>() == false)
-                    throw new Exception("Code must define a single type that inherits from 'TN.QuestScript'");
+                // if (type.IsSubTypeOf<QuestScript>() == false)
+                //     throw new Exception("Code must define a single type that inherits from 'TN.QuestScript'");
 
                 // Create an instance
                 activeQuestScript = type.CreateInstance();

@@ -18,10 +18,6 @@ namespace TN
             this.instance = instance;
         }
 
-        public override int GetOddNumbers()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 }

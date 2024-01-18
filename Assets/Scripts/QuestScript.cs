@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,6 @@ namespace TN
         private int i, j;
         private bool b1, b2;
         private string s1, s2;
-
-        public abstract int GetOddNumbers();
 
     }
 

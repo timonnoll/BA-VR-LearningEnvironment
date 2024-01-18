@@ -8,6 +8,8 @@ TagManager:
   - Left Hand
   - Right Hand
   - Disk
+  - CinemachineTarget
+  - Battery
   layers:
   - Default
   - TransparentFX
