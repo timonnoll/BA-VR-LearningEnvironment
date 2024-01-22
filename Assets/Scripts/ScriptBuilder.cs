@@ -18,6 +18,7 @@ namespace TN
 
         public QuestSystem questSystem;
 
+
         public AssemblyReferenceAsset[] assemblyReferences;
 
         public void Start()
@@ -51,6 +52,8 @@ namespace TN
                 }
             }";
 
+            questSystem.consoleField.text = "";
+
             Debug.Log(sourceCode);
 
             if (activeSourceCode != sourceCode || activeQuestScript == null)
@@ -64,11 +67,20 @@ namespace TN
                 if (type == null)
                 {
                     if (domain.RoslynCompilerService.LastCompileResult.Success == false)
+                    {
+                        ConsoleMessage("Code contained errors. Please fix and try again");
                         throw new Exception("Code contained errors. Please fix and try again");
+                    }
                     else if (domain.SecurityResult.IsSecurityVerified == false)
+                    {
+                        ConsoleMessage("Failed code security verification");
                         throw new Exception("Failed code security verification");
+                    }
                     else
+                    {
+                        ConsoleMessage("Failed to build code");
                         throw new Exception("Failed to build code");
+                    }
                 }
 
                 // Check for base class
@@ -93,6 +105,11 @@ namespace TN
                 activeQuestScript.Dispose();
                 activeQuestScript = null;
             }
+        }
+
+        public void ConsoleMessage(string consoleMessage)
+        {
+            questSystem.consoleField.text = consoleMessage;
         }
 
     }

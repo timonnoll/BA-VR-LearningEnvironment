@@ -22,8 +22,14 @@ namespace TN
         public TextMeshProUGUI activeVariables;
         public TextMeshProUGUI activeReturnName;
 
+        public TextMeshProUGUI consoleField;
+
+        public Animator doorAnimator;
 
         private int activeQuest = 0;
+
+        List<int> result = new List<int>();
+        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 
         public void ShowQuest()
         {
@@ -47,6 +53,12 @@ namespace TN
             else
                 codingWindow.SetActive(false);
 
+        }
+
+        public void HideQuest()
+        {
+            questWindow.SetActive(false);
+            codingWindow.SetActive(false);
         }
 
         public void UpdateActiveQuest()
@@ -73,22 +85,45 @@ namespace TN
         public bool EvaluateQuestScript(ScriptProxy activeQuestScript)
         {
             Quest quest = GetActiveQuest();
-            int result;
 
             switch (quest.title)
             {
+                case "Orbit Control":
+                    {
+                        if ((bool)activeQuestScript.Call("OrbitControl", 150) && (bool)activeQuestScript.Call("OrbitControl", 60)
+                        && !(bool)activeQuestScript.Call("OrbitControl", 12) && !(bool)activeQuestScript.Call("OrbitControl", 5))
+                            return true;
+                        else
+                        {
+                            consoleField.text = "The function does not work as intended.";
+                            return false;
+                        }
+                    }
                 case "Pincode":
                     {
-                        result = (int)activeQuestScript.Call("GetOddNumbers");
-                        if (result == 5)
+
+                        result = (List<int>)activeQuestScript.Call("GetOddNumbers", input);
+                        if (result.Count == 4 && result.Contains(1) && result.Contains(7) && result.Contains(5) && result.Contains(9))
                         {
                             UpdateActiveQuest();
-                            Debug.Log("true");
+                            doorAnimator.SetBool("Open", true);
+
                             return true;
                         }
                         else
                         {
+                            consoleField.text = "The function does not work as intended.";
                             Debug.Log("false");
+                            return false;
+                        }
+                    }
+                case "Average Calculation":
+                    {
+                        if ((double)activeQuestScript.Call("GetAverage", input) == 8.0)
+                            return true;
+                        else
+                        {
+                            consoleField.text = "The function does not work as intended.";
                             return false;
                         }
                     }

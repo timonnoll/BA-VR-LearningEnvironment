@@ -7,6 +7,7 @@ public class ButtonPushOpenDoor : MonoBehaviour
 {
     public Animator animator;
     public string boolName = "Open";
+    private bool energy = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,15 @@ public class ButtonPushOpenDoor : MonoBehaviour
 
     public void ToggleDoorOpen()
     {
-        bool isOpen = animator.GetBool(boolName);
-        animator.SetBool(boolName, !isOpen);
+        if (energy)
+        {
+            bool isOpen = animator.GetBool(boolName);
+            animator.SetBool(boolName, !isOpen);
+        }
+    }
+
+    public void ActivateEnergy()
+    {
+        energy = true;
     }
 }

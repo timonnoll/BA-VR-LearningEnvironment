@@ -16,7 +16,12 @@ namespace TN
             Build,
             Next,
             Previous,
-            Clear
+            Clear,
+            Return,
+            VarHelp,
+            OpHelp,
+            DataHelp,
+            ControlHelp
         }
 
         public Function buttonFunction;

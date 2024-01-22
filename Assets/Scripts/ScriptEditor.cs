@@ -14,7 +14,13 @@ namespace TN
 
         public event Action<KeyAction> OnKeyActionPressed = delegate { };
         public TMP_InputField inputField;
-        public Image Keyboard;
+        public GameObject keyboard;
+        public GameObject helpboard;
+
+        public GameObject variableHelp;
+        public GameObject operationHelp;
+        public GameObject dataStructureHelp;
+        public GameObject controlStructureHelp;
 
         public QuestSystem questSystem;
 
@@ -93,7 +99,31 @@ namespace TN
                         Clear();
                         break;
                     }
-
+                case KeyAction.Function.Return:
+                    {
+                        Return();
+                        break;
+                    }
+                case KeyAction.Function.VarHelp:
+                    {
+                        ShowHelp("varhelp");
+                        break;
+                    }
+                case KeyAction.Function.OpHelp:
+                    {
+                        ShowHelp("ophelp");
+                        break;
+                    }
+                case KeyAction.Function.DataHelp:
+                    {
+                        ShowHelp("datahelp");
+                        break;
+                    }
+                case KeyAction.Function.ControlHelp:
+                    {
+                        ShowHelp("controlhelp");
+                        break;
+                    }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -101,6 +131,58 @@ namespace TN
         public void Help()
         {
             questSystem.ShowQuest();
+            // keyboard.SetActive(false);
+            // helpboard.SetActive(true);
+            //questSystem.HideQuest();
+        }
+
+        public void Return()
+        {
+
+            HideHelp();
+            helpboard.SetActive(false);
+            keyboard.SetActive(true);
+            questSystem.ShowQuest();
+        }
+
+        public void ShowHelp(string content)
+        {
+            HideHelp();
+
+            switch (content)
+            {
+                case "varhelp":
+                    {
+                        variableHelp.SetActive(true);
+                        break;
+                    }
+
+                case "ophelp":
+                    {
+                        operationHelp.SetActive(true);
+                        break;
+                    }
+
+                case "datahelp":
+                    {
+                        dataStructureHelp.SetActive(true);
+                        break;
+                    }
+
+                case "controlhelp":
+                    {
+                        controlStructureHelp.SetActive(true);
+                        break;
+                    }
+            }
+        }
+
+        public void HideHelp()
+        {
+            variableHelp.SetActive(false);
+            operationHelp.SetActive(false);
+            dataStructureHelp.SetActive(false);
+            controlStructureHelp.SetActive(false);
         }
 
         public void Enter()
