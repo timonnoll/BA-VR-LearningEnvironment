@@ -28,6 +28,8 @@ namespace TN
 
         private int activeQuest = 0;
 
+        private int scans = 0;
+
         List<int> result = new List<int>();
         List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 
@@ -80,6 +82,13 @@ namespace TN
         public Quest GetActiveQuest()
         {
             return quests[activeQuest];
+        }
+
+        public void EvaluateScanQuest()
+        {
+            scans++;
+            if (scans == 1)
+                UpdateActiveQuest();
         }
 
         public bool EvaluateQuestScript(ScriptProxy activeQuestScript)
