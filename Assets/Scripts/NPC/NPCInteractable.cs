@@ -55,23 +55,15 @@ namespace TN
         {
             if (activeSequence == 0)
             {
-                StartDialog();
-                playSteps.PlayStepIndex(0);
+                StartDialog(0);
             }
             animator.SetTrigger("Wave");
         }
 
-        public void MovedToLocation()
-        {
-            StartDialog();
-            playSteps.PlayStepIndex(1);
-        }
-
-
-
-        public void StartDialog()
+        public void StartDialog(int playStepIndex)
         {
             gameObject.SetActive(true);
+            playSteps.PlayStepIndex(playStepIndex);
             lines = dialogues[activeSequence].text;
             index = 0;
             StartCoroutine(TypeLine());

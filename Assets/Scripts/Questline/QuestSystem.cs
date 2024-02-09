@@ -15,7 +15,6 @@ namespace TN
         public Quest[] quests;
 
         public NPCInteractable npcInteractable;
-        public PlaySteps playSteps;
 
         public GameObject questWindow;
         public GameObject codingWindow;
@@ -70,9 +69,7 @@ namespace TN
         public void UpdateActiveQuest()
         {
             quests[activeQuest].Complete();
-
-            npcInteractable.StartDialog();
-
+            //Complete Sound?
             if (quests[activeQuest + 1] != null)
             {
                 activeQuest += 1;
@@ -97,14 +94,14 @@ namespace TN
             if (scans == 1)
             {
                 UpdateActiveQuest();
-                playSteps.PlayStepIndex(2);
+                npcInteractable.StartDialog(2);
             }
         }
 
         public void EvaluateEnergyQuest()
         {
             UpdateActiveQuest();
-            playSteps.PlayStepIndex(5);
+            npcInteractable.StartDialog(5);
         }
 
         public bool EvaluateQuestScript(ScriptProxy activeQuestScript)
@@ -119,7 +116,7 @@ namespace TN
                         && !(bool)activeQuestScript.Call("OrbitControl", 12) && !(bool)activeQuestScript.Call("OrbitControl", 5))
                         {
                             UpdateActiveQuest();
-                            playSteps.PlayStepIndex(3);
+                            npcInteractable.StartDialog(3);
                             return true;
                         }
                         else
@@ -135,8 +132,10 @@ namespace TN
                         if (result.Count == 4 && result.Contains(1) && result.Contains(7) && result.Contains(5) && result.Contains(9))
                         {
                             UpdateActiveQuest();
-                            playSteps.PlayStepIndex(4);
+                            npcInteractable.StartDialog(4);
+
                             doorAnimator.SetBool("Open", true);
+                            AudioManager.instance.Play("DoorQuest");
 
                             return true;
                         }
@@ -152,7 +151,7 @@ namespace TN
                         if ((double)activeQuestScript.Call("GetAverage", input) == 8.0)
                         {
                             UpdateActiveQuest();
-                            playSteps.PlayStepIndex(6);
+                            npcInteractable.StartDialog(6);
                             return true;
                         }
                         else

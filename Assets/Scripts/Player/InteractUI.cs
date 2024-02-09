@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TN;
 using UnityEngine;
 
 namespace TN

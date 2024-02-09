@@ -13,7 +13,7 @@ namespace TN
         public float speed;
         public float rotationSpeed;
         int waypointIndex;
-        bool canMove = true;
+        bool canMove;
         Vector3 target;
 
         private NavMeshAgent agent;
@@ -29,6 +29,7 @@ namespace TN
         }
         void Start()
         {
+            waypointIndex = 0;
             UpdateTarget();
         }
 
@@ -62,11 +63,14 @@ namespace TN
         public void UpdateTarget()
         {
             target = waypoints[waypointIndex].position;
+            agent.isStopped = false;
+            canMove = true;
         }
 
         public void SetWaypointIndex(int index)
         {
             waypointIndex = index;
+            UpdateTarget();
         }
     }
 

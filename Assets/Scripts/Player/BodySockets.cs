@@ -24,7 +24,7 @@ public class BodySockets : MonoBehaviour
     }
     private void UpdateBodySocketHeight(GameObject bodySocket)
     {
-        bodySocket.transform.localPosition = new Vector3(bodySocket.transform.localPosition.x, (currentCameraLocalPosition.y * heightRatio), bodySocket.transform.localPosition.z);
+        bodySocket.transform.localPosition = new Vector3(bodySocket.transform.localPosition.x, currentCameraLocalPosition.y * heightRatio, bodySocket.transform.localPosition.z);
     }
 
     private void UpdateBodySocket()

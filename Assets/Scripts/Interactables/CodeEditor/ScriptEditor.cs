@@ -22,8 +22,6 @@ namespace TN
         public GameObject dataStructureHelp;
         public GameObject controlStructureHelp;
 
-        public QuestSystem questSystem;
-
         public ScriptBuilder scriptBuilder;
 
         private int currentCaretPosition = 0;
@@ -34,6 +32,8 @@ namespace TN
 
         public void AppendValue(KeyValue keyValue)
         {
+            AudioManager.instance.Play("Select");
+
             string value = "";
 
             OnKeyValuePressed(keyValue);
@@ -49,6 +49,8 @@ namespace TN
 
         public void ActionKey(KeyAction keyAction)
         {
+            AudioManager.instance.Play("Select");
+
             OnKeyActionPressed(keyAction);
 
             switch (keyAction.buttonFunction)
@@ -132,7 +134,7 @@ namespace TN
         {
             keyboard.SetActive(false);
             helpboard.SetActive(true);
-            questSystem.HideQuest();
+            scriptBuilder.questSystem.HideQuest();
         }
 
         public void Return()
@@ -141,7 +143,7 @@ namespace TN
             HideHelp();
             helpboard.SetActive(false);
             keyboard.SetActive(true);
-            questSystem.ShowQuest();
+            scriptBuilder.questSystem.ShowQuest();
         }
 
         public void ShowHelp(string content)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TN;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -20,6 +21,8 @@ public class ButtonPushOpenDoor : MonoBehaviour
         {
             bool isOpen = animator.GetBool(boolName);
             animator.SetBool(boolName, !isOpen);
+
+            AudioManager.instance.Play("DoorButton");
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TN;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -23,6 +24,7 @@ public class ObjectScanner : MonoBehaviour
 
     public void StartScan()
     {
+        AudioManager.instance.Play("Scan");
         rayActivate = true;
     }
 
