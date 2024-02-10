@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TN
 {
+    /// <summary>
+    /// Class for objects that are scanable
+    /// </summary>
     public class Scanable : MonoBehaviour
     {
         public QuestSystem questSystem;
@@ -16,12 +19,23 @@ namespace TN
 
         private int scanCount;
 
+        // Find scan data gameobject in children.
         private void Awake()
         {
             scanData = GameObject.Find("ScanDataCanvas");
         }
 
-        void Update()
+        // Initialize variables at start.
+        private void Start()
+        {
+            scanData.SetActive(false);
+            isActive = false;
+            timer = 0;
+            scanCount = 0;
+        }
+
+        // Check whether scan data is active if so, deactivate after specified seconds.
+        private void Update()
         {
             if (isActive)
             {
@@ -34,17 +48,10 @@ namespace TN
             }
             else
                 timer = 0;
-
         }
 
-        void Start()
-        {
-            scanData.SetActive(false);
-            isActive = false;
-            timer = 0;
-            scanCount = 0;
-        }
 
+        // Function is called by ObjectScanner. Set scan data to active.
         public void ShowInfo()
         {
             isActive = true;

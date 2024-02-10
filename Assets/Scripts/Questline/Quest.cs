@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TN
 {
+    /// <summary>
+    /// Blueprint for Quests.
+    /// </summary>
     [System.Serializable]
     public class Quest
     {

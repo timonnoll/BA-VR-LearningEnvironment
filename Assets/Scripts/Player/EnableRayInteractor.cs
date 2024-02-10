@@ -2,26 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnableRayInteractor : MonoBehaviour
+namespace TN
 {
-    public GameObject rightRayInteractor;
-    public GameObject leftRayInteractor;
-
-    private void OnTriggerEnter(Collider other)
+    /// <summary>
+    /// Enables ray interactors while triggering a specific collider.
+    /// </summary>
+    public class EnableRayInteractor : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        public GameObject rightRayInteractor;
+        public GameObject leftRayInteractor;
+
+        // Activate by entering the collider.
+        private void OnTriggerEnter(Collider other)
         {
-            rightRayInteractor.SetActive(true);
-            leftRayInteractor.SetActive(true);
+            if (other.CompareTag("Player"))
+            {
+                rightRayInteractor.SetActive(true);
+                leftRayInteractor.SetActive(true);
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // Deactivate by leaving the collider.
+        private void OnTriggerExit(Collider other)
         {
-            rightRayInteractor.SetActive(false);
-            leftRayInteractor.SetActive(false);
+            if (other.CompareTag("Player"))
+            {
+                rightRayInteractor.SetActive(false);
+                leftRayInteractor.SetActive(false);
+            }
         }
     }
 }

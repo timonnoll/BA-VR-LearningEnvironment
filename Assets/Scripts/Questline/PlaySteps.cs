@@ -5,6 +5,9 @@ using UnityEngine.Playables;
 
 namespace TN
 {
+    /// <summary>
+    /// Blueprint for voiceline steps.
+    /// </summary>
     [System.Serializable]
     public class Step
     {
@@ -13,17 +16,21 @@ namespace TN
         public bool hasPlayed = false;
     }
 
+    /// <summary>
+    /// Handling the voiceline steps.
+    /// </summary>
     public class PlaySteps : MonoBehaviour
     {
         PlayableDirector director;
         public List<Step> steps;
-        // Start is called before the first frame update
-        void Start()
+
+        // Get the PlayableDirector from the object. 
+        private void Start()
         {
             director = GetComponent<PlayableDirector>();
         }
 
-
+        // Play voiceline step by given index.
         public void PlayStepIndex(int index)
         {
             Step step = steps[index];

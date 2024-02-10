@@ -2,18 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 namespace TN
 {
+    /// <summary>
+    /// Editor to write C#-code ingame and display assistance.
+    /// </summary>
     public class ScriptEditor : MonoBehaviour
     {
-        /// Event fired when char key on keyboard is pressed.
+        // Event fired when char key on keyboard is pressed.
         public event Action<KeyValue> OnKeyValuePressed = delegate { };
-
         public event Action<KeyAction> OnKeyActionPressed = delegate { };
+
         public TMP_InputField inputField;
+
         public GameObject keyboard;
         public GameObject helpboard;
 
@@ -28,8 +31,10 @@ namespace TN
 
         private bool buildValid = false;
 
+        // Update Caret Position after input or backspace.
         private void UpdateCaretPosition(int newPos) => inputField.caretPosition = newPos;
 
+        // Add value to coding input field.
         public void AppendValue(KeyValue keyValue)
         {
             AudioManager.instance.Play("Select");
@@ -47,6 +52,7 @@ namespace TN
             UpdateCaretPosition(currentCaretPosition);
         }
 
+        // Call selected Action.
         public void ActionKey(KeyAction keyAction)
         {
             AudioManager.instance.Play("Select");
@@ -130,6 +136,8 @@ namespace TN
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        // Show assistance selection.
         public void Help()
         {
             keyboard.SetActive(false);
@@ -137,6 +145,7 @@ namespace TN
             scriptBuilder.questSystem.HideQuest();
         }
 
+        // Switch view from assistance pages to coding display.
         public void Return()
         {
 
@@ -146,6 +155,7 @@ namespace TN
             scriptBuilder.questSystem.ShowQuest();
         }
 
+        // Show assistance pages.
         public void ShowHelp(string content)
         {
             HideHelp();
@@ -178,6 +188,7 @@ namespace TN
             }
         }
 
+        // Hide assistance pages.
         public void HideHelp()
         {
             variableHelp.SetActive(false);
@@ -186,6 +197,7 @@ namespace TN
             controlStructureHelp.SetActive(false);
         }
 
+        // do a line break.
         public void Enter()
         {
             string enterString = "\n";
@@ -198,7 +210,7 @@ namespace TN
             UpdateCaretPosition(currentCaretPosition);
         }
 
-
+        // delete a character.
         public void Backspace()
         {
             currentCaretPosition = inputField.caretPosition;
@@ -210,6 +222,8 @@ namespace TN
                 UpdateCaretPosition(currentCaretPosition);
             }
         }
+
+        // Calls Compiling Function to 
         public void Build()
         {
             buildValid = scriptBuilder.CreateAndCompileScript(inputField.text);
@@ -218,7 +232,7 @@ namespace TN
                 Clear();
         }
 
-        /// Insert a space character.
+        // Insert a space character.
         public void Space()
         {
             currentCaretPosition = inputField.caretPosition;
@@ -227,7 +241,7 @@ namespace TN
             UpdateCaretPosition(currentCaretPosition);
         }
 
-        /// Move caret to the left.
+        // Move caret to the left.
         public void MoveCaretLeft()
         {
             currentCaretPosition = inputField.caretPosition;
@@ -239,7 +253,7 @@ namespace TN
             }
         }
 
-        /// Move caret to the right.
+        // Move caret to the right.
         public void MoveCaretRight()
         {
             currentCaretPosition = inputField.caretPosition;
@@ -251,6 +265,7 @@ namespace TN
             }
         }
 
+        // Clear coding input field.
         public void Clear()
         {
             if (inputField.caretPosition != 0)

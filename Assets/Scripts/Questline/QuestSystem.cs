@@ -10,15 +10,19 @@ using UnityEngine.Timeline;
 
 namespace TN
 {
+    /// <summary>
+    /// Handling and evaluating Quests.
+    /// </summary>
     public class QuestSystem : MonoBehaviour
     {
         public Quest[] quests;
 
-        public NPCInteractable npcInteractable;
 
+        [Header("UI Displays")]
         public GameObject questWindow;
         public GameObject codingWindow;
 
+        [Header("Active Quest")]
         public TextMeshProUGUI activeTitle;
         public TextMeshProUGUI activeDescription;
         public TextMeshProUGUI activeMethodName;
@@ -27,20 +31,20 @@ namespace TN
 
         public TextMeshProUGUI consoleField;
 
+        public DialogueSystem dialogueSystem;
+
         public Animator doorAnimator;
 
         private int activeQuest = 0;
 
         private int scans = 0;
 
-        List<int> result = new List<int>();
-        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
-
+        // Display the active quest.
         public void ShowQuest()
         {
-            Quest quest = quests[activeQuest];
+            Quest quest = GetActiveQuest();
 
-            quests[activeQuest].isActive = true;
+            quest.isActive = true;
 
             activeTitle.text = quest.title;
             activeDescription.text = quest.description;
@@ -60,15 +64,17 @@ namespace TN
 
         }
 
+        // Hide the active quest.
         public void HideQuest()
         {
             questWindow.SetActive(false);
             codingWindow.SetActive(false);
         }
 
+        // Update the active quest if complete and show the next quest.
         public void UpdateActiveQuest()
         {
-            quests[activeQuest].Complete();
+            GetActiveQuest().Complete();
             //Complete Sound?
             if (quests[activeQuest + 1] != null)
             {
@@ -83,27 +89,31 @@ namespace TN
             }
         }
 
+        // Get the active quest object.
         public Quest GetActiveQuest()
         {
             return quests[activeQuest];
         }
 
+        // Evaluate the scan quest.
         public void EvaluateScanQuest()
         {
             scans++;
             if (scans == 1)
             {
                 UpdateActiveQuest();
-                npcInteractable.StartDialog(2);
+                dialogueSystem.StartDialog(2);
             }
         }
 
+        // Evaluate the energy quest.
         public void EvaluateEnergyQuest()
         {
             UpdateActiveQuest();
-            npcInteractable.StartDialog(5);
+            dialogueSystem.StartDialog(5);
         }
 
+        // Evaluate the scripting quests by calling the ingame written functions.
         public bool EvaluateQuestScript(ScriptProxy activeQuestScript)
         {
             Quest quest = GetActiveQuest();
@@ -116,7 +126,7 @@ namespace TN
                         && !(bool)activeQuestScript.Call("OrbitControl", 12) && !(bool)activeQuestScript.Call("OrbitControl", 5))
                         {
                             UpdateActiveQuest();
-                            npcInteractable.StartDialog(3);
+                            dialogueSystem.StartDialog(3);
                             return true;
                         }
                         else
@@ -127,12 +137,14 @@ namespace TN
                     }
                 case "Pincode":
                     {
+                        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
+                        List<int> result;
 
                         result = (List<int>)activeQuestScript.Call("GetOddNumbers", input);
                         if (result.Count == 4 && result.Contains(1) && result.Contains(7) && result.Contains(5) && result.Contains(9))
                         {
                             UpdateActiveQuest();
-                            npcInteractable.StartDialog(4);
+                            dialogueSystem.StartDialog(4);
 
                             doorAnimator.SetBool("Open", true);
                             AudioManager.instance.Play("DoorQuest");
@@ -148,10 +160,12 @@ namespace TN
                     }
                 case "Average Calculation":
                     {
+                        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
+
                         if ((double)activeQuestScript.Call("GetAverage", input) == 8.0)
                         {
                             UpdateActiveQuest();
-                            npcInteractable.StartDialog(6);
+                            dialogueSystem.StartDialog(6);
                             return true;
                         }
                         else

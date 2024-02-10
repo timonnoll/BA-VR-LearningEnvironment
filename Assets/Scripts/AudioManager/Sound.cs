@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TN
 {
+    /// <summary>
+    /// Blueprint for initialization of SFX.
+    /// </summary>
     [System.Serializable]
     public class Sound
     {

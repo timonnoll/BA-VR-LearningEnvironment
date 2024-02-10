@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 namespace TN
 {
+    /// <summary>
+    /// Handle collision-related interactions on button input.
+    /// </summary>
     public class PlayerInteract : MonoBehaviour
     {
         public InputActionReference selectInputActionReference;
 
-
-        public void Update()
+        // check if interactable object is nearby, if button is pressed and then call a function.
+        private void Update()
         {
             if (selectInputActionReference.action.ReadValue<bool>())
             {
@@ -27,6 +30,7 @@ namespace TN
 
         }
 
+        // check for interactable NPC nearby.
         public NPCInteractable GetInteractableObject()
         {
             float interactRange = 2f;

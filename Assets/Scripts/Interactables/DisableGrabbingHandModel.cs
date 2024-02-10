@@ -6,13 +6,16 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace TN
 {
+    /// <summary>
+    /// Disable hand model while grabbing onto an object.
+    /// </summary>
     public class DisableGrabbingHandModel : MonoBehaviour
     {
         public GameObject leftHandModel;
         public GameObject rightHandModel;
 
-        // Start is called before the first frame update
-        void Start()
+        // Call functions for grab events.
+        private void Start()
         {
             XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
             grabInteractable.selectEntered.AddListener(HideGrabbingHand);
@@ -20,6 +23,7 @@ namespace TN
 
         }
 
+        // hide hand model which grabs the object.
         public void HideGrabbingHand(SelectEnterEventArgs args)
         {
             if (args.interactorObject.transform.tag == "Left Hand")
@@ -32,6 +36,7 @@ namespace TN
             }
         }
 
+        // show hand model after releasing the object.
         public void ShowGrabbingHand(SelectExitEventArgs args)
         {
             if (args.interactorObject.transform.tag == "Left Hand")

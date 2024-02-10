@@ -6,14 +6,15 @@ using TMPro;
 
 namespace TN
 {
-
+    /// <summary>
+    /// Initialize value key events.
+    /// </summary>
     public class KeyValue : MonoBehaviour
     {
         // default value for this key
         [Multiline(4)]
         public string value;
 
-        // reference to child text component
         private TextMeshProUGUI textComponent;
         private Button button;
         private ScriptEditor scriptEditor;
@@ -24,7 +25,8 @@ namespace TN
             scriptEditor = GetComponentInParent<ScriptEditor>();
         }
 
-        void Start()
+        // Add listener to value key.
+        private void Start()
         {
             textComponent = gameObject.GetComponentInChildren<TextMeshProUGUI>();
             textComponent.text = value;
@@ -33,6 +35,7 @@ namespace TN
             button.onClick.AddListener(onClickAppendValue);
         }
 
+        // Fire append value event if key is pressed.
         public void onClickAppendValue()
         {
             scriptEditor.AppendValue(this);

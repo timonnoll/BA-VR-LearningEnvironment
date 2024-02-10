@@ -6,6 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.State;
 
 namespace TN
 {
+    /// <summary>
+    /// Bind interactable source of AffordanceStateProvider to interactable parent component.
+    /// </summary>
     public class FindInteractableAffordance : MonoBehaviour
     {
         private void Awake()

@@ -4,30 +4,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 namespace TN
 {
+    /// <summary>
+    /// Builder for assembling the script components and compiling the scripts created at runtime.
+    /// </summary>
     public class ScriptBuilder : MonoBehaviour
     {
-        private string activeSourceCode = null;
-        private ScriptProxy activeQuestScript = null;
-        private ScriptDomain domain = null;
         public QuestSystem questSystem;
         public AssemblyReferenceAsset[] assemblyReferences;
 
+        private string activeSourceCode = null;
+        private ScriptProxy activeQuestScript = null;
+        private ScriptDomain domain = null;
 
-        public void Start()
+        // Create domain and add needed c# code librarys. 
+        private void Start()
         {
             // Create the domain
             domain = ScriptDomain.CreateDomain("QuestScriptCode", true);
+
             // Add assembly references
             foreach (AssemblyReferenceAsset reference in assemblyReferences)
                 domain.RoslynCompilerService.ReferenceAssemblies.Add(reference);
         }
 
-
+        // Create and compile script with the ingame written code.
         public bool CreateAndCompileScript(string playerWrittenCode)
         {
             string sourceCode = @"
@@ -37,7 +40,7 @@ namespace TN
             using UnityEngine;
             namespace TN
             {
-                class Script : QuestScript
+                class Script
                 {
                     " + questSystem.activeVariables.text + @"
                     public " + questSystem.activeMethodName.text + @"
@@ -49,6 +52,7 @@ namespace TN
                 }
             }";
 
+            // Clear error message text field
             questSystem.consoleField.text = "";
 
             Debug.Log(sourceCode);
@@ -57,6 +61,7 @@ namespace TN
             {
                 // Remove any other scripts
                 ResetQuestScript();
+
                 // Compile code
                 ScriptType type = domain.CompileAndLoadMainSourceInterpreted(sourceCode, ScriptSecurityMode.UseSettings, assemblyReferences);
 
@@ -80,12 +85,12 @@ namespace TN
                     }
                 }
 
-                // Check for base class
-                if (type.IsSubTypeOf<QuestScript>() == false)
-                {
-                    ConsoleMessage("Code must define a single type that inherits from 'TN.QuestScript'");
-                    throw new Exception("Code must define a single type that inherits from 'TN.QuestScript'");
-                }
+                // // Check for base class
+                // if (type.IsSubTypeOf<QuestScript>() == false)
+                // {
+                //     ConsoleMessage("Code must define a single type that inherits from 'TN.QuestScript'");
+                //     throw new Exception("Code must define a single type that inherits from 'TN.QuestScript'");
+                // }
 
                 // Create an instance
                 activeQuestScript = type.CreateInstance();
@@ -94,19 +99,18 @@ namespace TN
             return questSystem.EvaluateQuestScript(activeQuestScript);
         }
 
+        // Destroy the old quest script.
         public void ResetQuestScript()
         {
             if (activeQuestScript != null)
             {
-                // Get the QuestScript instance
-                // QuestScript questScript = activeQuestScript.GetInstanceAs<QuestScript>(false);
-
                 // Destroy script
                 activeQuestScript.Dispose();
                 activeQuestScript = null;
             }
         }
 
+        // Display the error message.
         public void ConsoleMessage(string consoleMessage)
         {
             questSystem.consoleField.text = consoleMessage;

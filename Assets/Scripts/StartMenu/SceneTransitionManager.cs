@@ -3,52 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitionManager : MonoBehaviour
+namespace TN
 {
-    public FadeScreen fadeScreen;
-    public static SceneTransitionManager singleton;
-
-    private void Awake()
+    /// <summary>
+    /// Manage transition between start and game scene.
+    /// </summary>
+    public class SceneTransitionManager : MonoBehaviour
     {
-        if (singleton && singleton != this)
-            Destroy(singleton);
+        public FadeScreen fadeScreen;
+        public static SceneTransitionManager instance;
 
-        singleton = this;
-    }
-
-    public void GoToScene(int sceneIndex)
-    {
-        StartCoroutine(GoToSceneRoutine(sceneIndex));
-    }
-
-    IEnumerator GoToSceneRoutine(int sceneIndex)
-    {
-        fadeScreen.FadeOut();
-        yield return new WaitForSeconds(fadeScreen.fadeDuration);
-
-        //Launch the new scene
-        SceneManager.LoadScene(sceneIndex);
-    }
-
-    public void GoToSceneAsync(int sceneIndex)
-    {
-        StartCoroutine(GoToSceneAsyncRoutine(sceneIndex));
-    }
-
-    IEnumerator GoToSceneAsyncRoutine(int sceneIndex)
-    {
-        fadeScreen.FadeOut();
-        //Launch the new scene
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        operation.allowSceneActivation = false;
-
-        float timer = 0;
-        while(timer <= fadeScreen.fadeDuration && !operation.isDone)
+        // Check that no other SceneTransitionManager instance exists and if so delete it and initialize this one.
+        private void Awake()
         {
-            timer += Time.deltaTime;
-            yield return null;
+            if (instance && instance != this)
+                Destroy(instance);
+
+            instance = this;
         }
 
-        operation.allowSceneActivation = true;
+        // Start transition to game scene. 
+        public void GoToScene(int sceneIndex)
+        {
+            StartCoroutine(GoToSceneRoutine(sceneIndex));
+        }
+
+        // Start fade transition and wait until transition effect is completed. Then activate other scene.
+        IEnumerator GoToSceneRoutine(int sceneIndex)
+        {
+            fadeScreen.FadeOut();
+            //Launch the new scene
+            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+            operation.allowSceneActivation = false;
+
+            float timer = 0;
+            while (timer <= fadeScreen.fadeDuration && !operation.isDone)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            operation.allowSceneActivation = true;
+        }
     }
+
 }
+

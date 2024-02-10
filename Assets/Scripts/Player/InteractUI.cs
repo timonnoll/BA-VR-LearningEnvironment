@@ -4,12 +4,16 @@ using UnityEngine;
 
 namespace TN
 {
+    /// <summary>
+    /// Visualize possible player interaction.
+    /// </summary>
     public class InteractUI : MonoBehaviour
     {
-        [SerializeField] private GameObject buttonCanvas;
-        [SerializeField] private PlayerInteract playerInteract;
-        [SerializeField] private LookAtController lookAtController;
+        public GameObject buttonCanvas;
+        public PlayerInteract playerInteract;
+        public LookAtController lookAtController;
 
+        // Call a function to check if interactable object (NPC) is nearby.
         private void Update()
         {
             if (playerInteract.GetInteractableObject() != null)
@@ -22,11 +26,14 @@ namespace TN
             }
         }
 
+        // Show required controller input (and let the npc look at the player).
         private void Show()
         {
             lookAtController.SetStatus(true);
             buttonCanvas.SetActive(true);
         }
+
+        // Hide required controller input (and stop the npc from looking at the player).
         private void Hide()
         {
             lookAtController.SetStatus(false);

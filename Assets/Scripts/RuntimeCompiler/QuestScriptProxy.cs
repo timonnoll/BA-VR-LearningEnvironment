@@ -5,19 +5,21 @@ using dotnow;
 
 namespace TN
 {
-    [dotnow.CLRProxyBinding(typeof(QuestScript))]
-    public class QuestScriptProxy : QuestScript, dotnow.Interop.ICLRProxy
+    /// <summary>
+    /// Proxy class needed for integrating dotnow interpreter for android runtime compiling.
+    /// </summary>
+    public class QuestScriptProxy : dotnow.Interop.ICLRProxy
     {
         dotnow.AppDomain domain;
         dotnow.CLRInstance instance;
         public CLRInstance Instance => instance;
 
+        // initialize dotnow proxy.
         public void InitializeProxy(dotnow.AppDomain domain, dotnow.CLRInstance instance)
         {
             this.domain = domain;
             this.instance = instance;
         }
-
     }
 
 }

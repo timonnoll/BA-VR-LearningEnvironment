@@ -1,33 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
-using TN;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ButtonPushOpenDoor : MonoBehaviour
+namespace TN
 {
-    public Animator animator;
-    public string boolName = "Open";
-    private bool energy = false;
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Open the door when the power source is activated and the button is pressed.
+    /// </summary>
+    public class ButtonPushOpenDoor : MonoBehaviour
     {
-        GetComponent<XRSimpleInteractable>().selectEntered.AddListener(x => ToggleDoorOpen());
-    }
+        public Animator animator;
+        public string boolName = "Open";
+        private bool energy;
 
-    public void ToggleDoorOpen()
-    {
-        if (energy)
+        // Add listener to call function if button is pressed.
+        void Start()
         {
-            bool isOpen = animator.GetBool(boolName);
-            animator.SetBool(boolName, !isOpen);
-
-            AudioManager.instance.Play("DoorButton");
+            energy = false;
+            GetComponent<XRSimpleInteractable>().selectEntered.AddListener(x => ToggleDoorOpen());
         }
-    }
 
-    public void ActivateEnergy()
-    {
-        energy = true;
+        // toggle door state if power source is activated
+        public void ToggleDoorOpen()
+        {
+            if (energy)
+            {
+                bool isOpen = animator.GetBool(boolName);
+                animator.SetBool(boolName, !isOpen);
+
+                AudioManager.instance.Play("DoorButton");
+            }
+        }
+
+        // Set power source to activated.
+        public void ActivateEnergy()
+        {
+            energy = true;
+        }
     }
 }
