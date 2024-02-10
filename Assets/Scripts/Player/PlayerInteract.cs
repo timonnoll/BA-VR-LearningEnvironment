@@ -30,7 +30,7 @@ namespace TN
 
         }
 
-        // check for interactable NPC nearby.
+        // check for interactable NPCs nearby.
         public NPCInteractable GetInteractableObject()
         {
             float interactRange = 2f;

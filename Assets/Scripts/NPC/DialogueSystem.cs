@@ -41,6 +41,7 @@ namespace TN
         {
             dialogCanvas.SetActive(false);
             textComponent.text = string.Empty;
+            lines = dialogues[activeSequence].text;
             activeSequence = 0;
             index = 0;
             timer = 0;

@@ -6552,9 +6552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 810451989}
+  heightRatio: 0.55
   leftBodySocket: {fileID: 1849572658}
   rightBodySocket: {fileID: 203258540}
-  heightRatio: 0.55
 --- !u!1 &260482457
 GameObject:
   m_ObjectHideFlags: 0
@@ -20395,7 +20395,7 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
   - name: Background
-    clip: {fileID: 8300000, guid: 71d719c3909a70c4e80031df65061fd2, type: 3}
+    clip: {fileID: 8300000, guid: 4d49dc445979b3d47987bf35d254ad45, type: 3}
     source: {fileID: 0}
     volume: 0.03
     loop: 1
@@ -62635,7 +62635,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438f85b1f77e1bd478c4dd66e0724aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues: []
+  dialogues:
+  - text:
+    - "Hey alles okay? Du hast dir wirklich hart den Kopf gesto\xDFen. Kannst du
+      dich noch an mich erinnern?"
+    - Mein Name ist Eko und ich bin der hauseigene Board-Roboter und ebenso Teil
+      des Notfallsystems. Ich helfe dir gerne nochmal die verschiedenen Systeme hier
+      auf dem Schiff etwas besser zu verstehen.
+    - "Traurigerweise haben sich meine Schaltkreise \xFCber die vergangenen Jahre
+      etwas abgenutzt, weshalb ich einige Denkprozesse nicht mehr richtig ausf\xFChren
+      kann. Vielleicht kannst du mir dabei ja ein wenig weiterhelfen."
+    - "Seit der letzten Kollision sind hier einige Dinge auf dem Schiff leider nicht
+      mehr wie sie einmal waren\u2026 Daher ist es unsere Mission alles wieder auf
+      Vordermann zu bringen, damit wir endlich wieder nachhause kommen."
+    - "Ach so fast vergessen! Damit mir nicht jeder der dieses Schiff betritt einfach
+      Befehle erteilen kann, wurde ich aus Sicherheitsgr\xFCnden so programmiert,
+      dass ich zwar eure Sprache wiedergeben kann, jedoch nur Programmiercode verstehe\u2026"
+    - "Ich hoffe das ist kein Problem f\xFCr dich, ansonsten unterst\xFCtze ich dich
+      gerne die Grundkonzepte zu verstehen. Folge mir ich m\xF6chte dir was zeigen."
+  - text:
+    - "Hier im hinteren Fl\xFCgel befindet sich das Terminal. Auf dem linken Display
+      siehst du immer die Aufgabe die als n\xE4chstes zu erledigen ist. Mal sind
+      es T\xE4tigkeiten und mal sind es Programmieraufgaben."
+    - "Sollte es sich um Programmieraufgaben handeln, kannst du f\xFCr das Erstellen
+      der Skripte diese Tastatur hier benutzen. Falls du Probleme beim Schreiben
+      von Code hast, kannst du \xFCber die \u201E? -Taste\u201C rechts oben Hilfe
+      anfordern."
+    - "Wie ich sehe war dein Vorg\xE4nger so nett und hat dir seinen Scanner hinterlassen.
+      Mithilfe dieses Scanners kannst du die Objekteigenschaften der Gegenst\xE4nde
+      hier auf dem Schiff er\xF6rtern."
+    - "Halte diesen daf\xFCr einfach auf das Objekt welches du gerne Scannen w\xFCrdest
+      und l\xF6se ihn aus. So kannst du dir einen beispielhaften \xDCberblick \xFCber
+      die Eigenschaften verschiedener Objekte machen."
+    - "Ansonsten w\xE4re es das f\xFCrs erste. Schau dich ruhig ein wenig um."
+  - text:
+    - "Ohje, wir haben ein Problem! Da wir momentan keinen Zugriff auf das Cockpit
+      haben, m\xFCssen wir vor\xFCbergehend mithilfe des Autopiloten fliegen."
+    - "Die Sensoren vorne am Raumschiff k\xF6nnen zwar die auf uns zusteuernden Asteroiden
+      nach Zahlen Kategorisieren, jedoch scheint das System was die Reaktion darauf
+      ausf\xFChrt ausgefallen zu sein."
+    - "Kannst du die Funktion vollenden die Wahr zur\xFCckgibt, wenn die Asteroidenklasse
+      ganzzahlig durch 3 oder 5 teilbar ist und im anderen Fall mit False antwortet?
+      Das sollte f\xFCr die vorerst f\xFCr die Navigation ausreichen."
+  - text:
+    - "Prima! Als n\xE4chstes sollten wir eine M\xF6glichkeit finden das Hauptstromaggregat
+      wieder zum Laufen zu bekommen, da das Notfallsystem langsam ziemlich an seine
+      Grenzen kommt."
+    - "Leider habe ich den Pincode f\xFCr die verschlossene T\xFCr vergessen. Ich
+      wei\xDF das er aus den ungeraden Zahlen einer im Sicherheitssystem hinterlegten
+      Liste zusammengesetzt wird. Auf die Liste sollte ich irgendwie zugreifen k\xF6nnen\u2026"
+    - "Kannst du mir eine Funktion schreiben die mir die ungeraden Zahlen aus einer
+      bestehenden Liste in eine neue Speichert? Dann kann ich die T\xFCr bestimmt
+      \xF6ffnen."
+  - text:
+    - "Grandios! Die T\xFCr sollte jetzt ge\xF6ffnet sein. Schau mal nach, vielleicht
+      bekommst du das Aggregat ja wieder zum Laufen."
+  - text:
+    - "Exzellent! Alle Systeme laufen wieder und wir k\xF6nnen endlich nach Hause
+      fliegen."
+    - "Ich m\xFCsste hier noch eine Liste haben, mit den Koordinaten f\xFCr den Planet
+      Erde. Die genaue Lokation erhalten wir, wenn wir den Durchschnitt der Summe
+      aller Werte der Liste berechnen. "
+    - "K\xF6nntest du hierf\xFCr ein letztes Skript schreiben, welches den Durchschnitt
+      der Werte bestimmt? Den Rest \xFCbernehme ich!"
+  - text:
+    - "Perfekt! Ich dank dir vielmals. Ohne dich w\xE4re das alles nicht m\xF6glich
+      gewesen."
   playSteps: {fileID: 2020086579}
   textComponent: {fileID: 780224734}
   dialogCanvas: {fileID: 1714822434}
