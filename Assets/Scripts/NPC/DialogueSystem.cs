@@ -89,13 +89,18 @@ namespace TN
             else
             {
                 activeSequence++;
-                textComponent.text = string.Empty;
                 index = 0;
                 timer = 0;
                 lines = new string[dialogues[activeSequence].text.Length];
                 lines = dialogues[activeSequence].text;
-                dialogCanvas.SetActive(false);
             }
+        }
+
+        // Disable dialog if voiceline stopped playing (called by timeline signal).
+        public void DisableDialog()
+        {
+            textComponent.text = string.Empty;
+            dialogCanvas.SetActive(false);
         }
     }
 

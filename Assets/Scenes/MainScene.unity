@@ -5198,7 +5198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203258541}
   - component: {fileID: 203258543}
-  - component: {fileID: 203258542}
+  - component: {fileID: 203258544}
   m_Layer: 0
   m_Name: Right Body Socket Interactor
   m_TagString: Untagged
@@ -5222,7 +5222,28 @@ Transform:
   - {fileID: 1669831202}
   m_Father: {fileID: 256945380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &203258542
+--- !u!65 &203258543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203258540}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &203258544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5231,7 +5252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 203258540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 225afd813cfbcca439834dc0879ecf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -5240,7 +5261,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_InteractionLayers:
     m_Bits: 4294967295
-  m_AttachTransform: {fileID: 1669831202}
+  m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 1335501042}
@@ -5253,7 +5274,31 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 464894389}
+        m_TargetAssemblyTypeName: ButtonPushOpenDoor, Assembly-CSharp
+        m_MethodName: ActivateEnergy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803153797}
+        m_TargetAssemblyTypeName: TN.QuestSystem, Assembly-CSharp
+        m_MethodName: EvaluateEnergyQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -5278,27 +5323,7 @@ MonoBehaviour:
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
---- !u!65 &203258543
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203258540}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  targetTag: Scanner
 --- !u!1 &205520127
 GameObject:
   m_ObjectHideFlags: 0
@@ -7656,7 +7681,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6d54873da4a4d46b39d1e26dc276b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: '+ '
+  value: +
+--- !u!1 &289784543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289784544}
+  m_Layer: 0
+  m_Name: WaypointEndPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289784544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289784543}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.33642966, z: 0, w: 0.9417086}
+  m_LocalPosition: {x: -1.406, y: 0.07, z: -1.465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758773336}
+  m_LocalEulerAnglesHint: {x: 0, y: -39.319, z: 0}
 --- !u!1 &293293357
 GameObject:
   m_ObjectHideFlags: 0
@@ -7682,7 +7738,7 @@ Transform:
   m_GameObject: {fileID: 293293357}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.88601077, z: -0, w: 0.46366477}
-  m_LocalPosition: {x: 8.508, y: 0.1024, z: 3.347}
+  m_LocalPosition: {x: 9.273, y: 0.1024, z: 3.448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12329,6 +12385,8 @@ MonoBehaviour:
   waypoints:
   - {fileID: 293293358}
   - {fileID: 538485380}
+  - {fileID: 636332695}
+  - {fileID: 289784544}
   facing: {fileID: 1367645533}
   speed: 2
   rotationSpeed: 2
@@ -12389,12 +12447,12 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 401758169}
           m_TargetAssemblyTypeName: TN.MovementAI, Assembly-CSharp
-          m_MethodName: SetWaypointIndex
-          m_Mode: 3
+          m_MethodName: IncreaseWaypointIndex
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -15334,7 +15392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6d54873da4a4d46b39d1e26dc276b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: '- '
+  value: '-'
 --- !u!1 &491879036
 GameObject:
   m_ObjectHideFlags: 0
@@ -23082,7 +23140,7 @@ PrefabInstance:
     - target: {fileID: 4223635557334411916, guid: b3830b3b2f190ee46a9c88433e985221,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.56
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4223635557334411916, guid: b3830b3b2f190ee46a9c88433e985221,
         type: 3}
@@ -24102,6 +24160,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 634948757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &636332694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 636332695}
+  m_Layer: 0
+  m_Name: WaypointEnergy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &636332695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636332694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.33642966, z: 0, w: 0.9417086}
+  m_LocalPosition: {x: -9.204, y: 0.06, z: 0.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758773336}
+  m_LocalEulerAnglesHint: {x: 0, y: -39.319, z: 0}
 --- !u!1 &638689234
 GameObject:
   m_ObjectHideFlags: 0
@@ -27943,6 +28032,8 @@ Transform:
   m_Children:
   - {fileID: 293293358}
   - {fileID: 538485380}
+  - {fileID: 636332695}
+  - {fileID: 289784544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &765867815
@@ -30562,7 +30653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6d54873da4a4d46b39d1e26dc276b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: '* '
+  value: '*'
 --- !u!1 &840225788
 GameObject:
   m_ObjectHideFlags: 0
@@ -35590,7 +35681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6d54873da4a4d46b39d1e26dc276b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: '% '
+  value: '%'
 --- !u!1 &982705672
 GameObject:
   m_ObjectHideFlags: 0
@@ -41561,7 +41652,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.13333334
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 5a6e444ccc2fe69458ed43775247515f, type: 2}
   m_BuildHeightMesh: 0
@@ -41894,7 +41985,7 @@ MonoBehaviour:
     m_Bits: 1
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
-  m_DisableVisualsWhenBlockedInGroup: 1
+  m_DisableVisualsWhenBlockedInGroup: 0
   m_StartingSelectedInteractable: {fileID: 0}
   m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
@@ -41977,7 +42068,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147483681
+    m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -45901,6 +45992,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScifiHandGun_Baked_Maps
       objectReference: {fileID: 0}
+    - target: {fileID: 633007714637671352, guid: 3f29914b413904d40a89e972f348ebd8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Scanner
+      objectReference: {fileID: 0}
     - target: {fileID: 9171070566221193531, guid: 3f29914b413904d40a89e972f348ebd8,
         type: 3}
       propertyPath: m_Convex
@@ -46496,7 +46592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6d54873da4a4d46b39d1e26dc276b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: '/ '
+  value: /
 --- !u!1001 &1355525116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52782,8 +52878,8 @@ MonoBehaviour:
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 1, g: 1, b: 1, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
@@ -52889,7 +52985,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -55127,6 +55223,7 @@ GameObject:
   - component: {fileID: 1594847709}
   - component: {fileID: 1594847711}
   - component: {fileID: 1594847710}
+  - component: {fileID: 1594847712}
   m_Layer: 0
   m_Name: Next
   m_TagString: Untagged
@@ -55339,11 +55436,34 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1594847712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594847704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!1 &1595805651
 GameObject:
   m_ObjectHideFlags: 0
@@ -55990,7 +56110,7 @@ Transform:
   m_GameObject: {fileID: 1623429835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.94, y: 3.6, z: -1.08}
+  m_LocalPosition: {x: 0.94, y: 2.643, z: -0.991}
   m_LocalScale: {x: 4.166679, y: 4.166679, z: 4.166679}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56063,7 +56183,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1803153797}
         m_TargetAssemblyTypeName: TN.QuestSystem, Assembly-CSharp
-        m_MethodName: UpdateActiveQuest
+        m_MethodName: EvaluateEnergyQuest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57553,7 +57673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469146, guid: 64b3f36e835346747865afbf6cf62acf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.082
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62273,7 +62393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849572659}
   - component: {fileID: 1849572661}
-  - component: {fileID: 1849572660}
+  - component: {fileID: 1849572662}
   m_Layer: 0
   m_Name: Left Body Socket Interactor
   m_TagString: Untagged
@@ -62297,7 +62417,28 @@ Transform:
   - {fileID: 1819125973}
   m_Father: {fileID: 256945380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1849572660
+--- !u!65 &1849572661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849572658}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1849572662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62306,7 +62447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849572658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 225afd813cfbcca439834dc0879ecf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -62315,7 +62456,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_InteractionLayers:
     m_Bits: 4294967295
-  m_AttachTransform: {fileID: 1819125973}
+  m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -62328,7 +62469,31 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 464894389}
+        m_TargetAssemblyTypeName: ButtonPushOpenDoor, Assembly-CSharp
+        m_MethodName: ActivateEnergy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1803153797}
+        m_TargetAssemblyTypeName: TN.QuestSystem, Assembly-CSharp
+        m_MethodName: EvaluateEnergyQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -62353,27 +62518,7 @@ MonoBehaviour:
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
---- !u!65 &1849572661
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849572658}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  targetTag: Scanner
 --- !u!1001 &1849827478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63180,8 +63325,8 @@ MonoBehaviour:
   playSteps: {fileID: 2020086579}
   textComponent: {fileID: 780224734}
   dialogCanvas: {fileID: 1714822434}
-  pauseTimer: 0.6
-  textSpeed: 0.01
+  pauseTimer: 1
+  textSpeed: 0.012
 --- !u!4 &1899705889
 Transform:
   m_ObjectHideFlags: 0
@@ -63212,6 +63357,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 3ee540183e816e94b97a8d0829660853, type: 2}
+    - {fileID: 11400000, guid: b649a917c9d6e7b478db8569002ae283, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -63223,6 +63369,20 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1899705888}
+          m_TargetAssemblyTypeName: TN.DialogueSystem, Assembly-CSharp
+          m_MethodName: DisableDialog
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -68433,7 +68593,7 @@ MonoBehaviour:
     m_Bits: 1
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
-  m_DisableVisualsWhenBlockedInGroup: 1
+  m_DisableVisualsWhenBlockedInGroup: 0
   m_StartingSelectedInteractable: {fileID: 0}
   m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
@@ -68516,7 +68676,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147483681
+    m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0

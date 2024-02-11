@@ -106,7 +106,7 @@ namespace TN
         // Evaluate the energy quest.
         public void EvaluateEnergyQuest()
         {
-            if (activeQuest == 3)
+            if (activeQuest == 4)
             {
                 UpdateActiveQuest();
                 dialogueSystem.StartDialog(5);
@@ -162,7 +162,7 @@ namespace TN
                     {
                         List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 
-                        if ((double)activeQuestScript.Call("GetAverage", input) == 8.0)
+                        if ((double)activeQuestScript.Call("GetAverage", input) == 10.0)
                         {
                             UpdateActiveQuest();
                             dialogueSystem.StartDialog(6);

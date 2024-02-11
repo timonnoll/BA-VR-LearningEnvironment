@@ -101,10 +101,10 @@ namespace TN
             timer = 0;
         }
 
-        // Set index of new Waypoint.
-        public void SetWaypointIndex(int index)
+        // Increase index to get next Waypoint.
+        public void IncreaseWaypointIndex()
         {
-            waypointIndex = index;
+            waypointIndex++;
             UpdateTarget();
         }
     }
