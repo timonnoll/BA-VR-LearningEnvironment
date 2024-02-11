@@ -30,7 +30,7 @@ namespace TN
         {
             if (isActive)
             {
-                animator.SetLookAtPosition(objectToLookAt.position);
+                animator.SetLookAtPosition(new Vector3(objectToLookAt.position.x, objectToLookAt.position.y + 1.8f, objectToLookAt.position.z));
                 animator.SetLookAtWeight(1, bodyWeight, headWeight);
             }
         }

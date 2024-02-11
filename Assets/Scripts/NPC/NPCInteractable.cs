@@ -30,12 +30,12 @@ namespace TN
         // Start the dialogue if it is the first interaction. 
         public void Interact()
         {
+            animator.Play("Waving");
             if (startDialogSystem)
             {
                 startDialogSystem = false;
                 dialogueSystem.StartDialog(0);
             }
-            animator.SetTrigger("Wave");
         }
     }
 }

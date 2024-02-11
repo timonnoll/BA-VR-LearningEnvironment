@@ -37,8 +37,8 @@ namespace TN
         // Set the scanner to enabled.
         public void StartScan()
         {
-            AudioManager.instance.Play("Scan");
             rayActivate = true;
+            AudioManager.instance.Play("Scan");
         }
 
         // Set the scanner to disabled.

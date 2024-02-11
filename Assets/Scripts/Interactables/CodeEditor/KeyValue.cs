@@ -15,7 +15,6 @@ namespace TN
         [Multiline(4)]
         public string value;
 
-        private TextMeshProUGUI textComponent;
         private Button button;
         private ScriptEditor scriptEditor;
 
@@ -28,9 +27,6 @@ namespace TN
         // Add listener to value key.
         private void Start()
         {
-            textComponent = gameObject.GetComponentInChildren<TextMeshProUGUI>();
-            textComponent.text = value;
-
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(onClickAppendValue);
         }

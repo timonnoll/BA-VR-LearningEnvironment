@@ -9,21 +9,13 @@ namespace TN
     /// </summary>
     public class Scanable : MonoBehaviour
     {
+        public GameObject scanData;
         public QuestSystem questSystem;
 
         public float disableDisplayTime = 3;
 
-        private GameObject scanData;
         private float timer;
         private bool isActive;
-
-        private int scanCount;
-
-        // Find scan data gameobject in children.
-        private void Awake()
-        {
-            scanData = GameObject.Find("ScanDataCanvas");
-        }
 
         // Initialize variables at start.
         private void Start()
@@ -31,7 +23,6 @@ namespace TN
             scanData.SetActive(false);
             isActive = false;
             timer = 0;
-            scanCount = 0;
         }
 
         // Check whether scan data is active if so, deactivate after specified seconds.
@@ -57,10 +48,7 @@ namespace TN
             isActive = true;
             scanData.SetActive(true);
 
-            scanCount++;
-
-            if (scanCount == 1)
-                questSystem.EvaluateScanQuest();
+            questSystem.EvaluateScanQuest();
         }
     }
 

@@ -1575,7 +1575,7 @@
                 {
                     "name": "",
                     "id": "a7c32231-555c-4ced-ba4d-b297c9885d0f",
-                    "path": "<XRController>{RightHand}/primary",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/primarybutton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

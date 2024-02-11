@@ -21,11 +21,14 @@ namespace TN
 
         private int waypointIndex;
         private bool canMove;
+        private bool canRotate;
 
         private Vector3 target;
         private NavMeshAgent agent;
         private LookAtController lookAtController;
         private Animator animator;
+
+        private float timer;
 
         // Get components of the object to be moved (NPC).
         private void Awake()
@@ -38,6 +41,7 @@ namespace TN
         // Start with first waypoint.
         private void Start()
         {
+            timer = 0;
             waypointIndex = 0;
             UpdateTarget();
         }
@@ -63,15 +67,27 @@ namespace TN
                     // Deactivate NavMeshAgent and stop moving towards destination.
                     agent.isStopped = true;
                     canMove = false;
-                    lookAtController.SetStatus(true);
                 }
             }
             else
             {
-                // Rotate towards facing position.
-                Vector3 relativePos = facing.position - transform.position;
-                Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                if (canRotate)
+                {
+                    timer += Time.deltaTime;
+                    if (timer < rotationSpeed)
+                    {
+                        // Rotate towards facing position.
+                        Vector3 relativePos = facing.position - transform.position;
+                        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+                    }
+                    else
+                        canRotate = false;
+                }
+                else
+                {
+                    lookAtController.SetStatus(true);
+                }
             }
         }
 
@@ -81,6 +97,8 @@ namespace TN
             target = waypoints[waypointIndex].position;
             agent.isStopped = false;
             canMove = true;
+            canRotate = true;
+            timer = 0;
         }
 
         // Set index of new Waypoint.

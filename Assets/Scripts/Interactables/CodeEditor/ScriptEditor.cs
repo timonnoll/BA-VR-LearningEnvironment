@@ -48,8 +48,11 @@ namespace TN
             currentCaretPosition = inputField.caretPosition;
             inputField.text = inputField.text.Insert(currentCaretPosition, value);
             currentCaretPosition += value.Length;
-
             UpdateCaretPosition(currentCaretPosition);
+
+            if (value == "{" || value == "}" || value == ";")
+                Enter();
+
         }
 
         // Call selected Action.

@@ -63,9 +63,7 @@ namespace TN
         {
             dialogCanvas.SetActive(true);
             playSteps.PlayStepIndex(playStepIndex);
-            lines = dialogues[activeSequence].text;
-            index = 0;
-            timer = 0;
+
             StartCoroutine(TypeLine());
         }
 
@@ -91,6 +89,11 @@ namespace TN
             else
             {
                 activeSequence++;
+                textComponent.text = string.Empty;
+                index = 0;
+                timer = 0;
+                lines = new string[dialogues[activeSequence].text.Length];
+                lines = dialogues[activeSequence].text;
                 dialogCanvas.SetActive(false);
             }
         }

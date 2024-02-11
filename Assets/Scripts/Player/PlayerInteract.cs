@@ -10,20 +10,21 @@ namespace TN
     /// </summary>
     public class PlayerInteract : MonoBehaviour
     {
-        public InputActionReference selectInputActionReference;
+        public InputActionProperty selectInputAction;
 
         // check if interactable object is nearby, if button is pressed and then call a function.
         private void Update()
         {
-            if (selectInputActionReference.action.ReadValue<bool>())
+            if (selectInputAction.action.ReadValue<float>() == 1)
             {
-                float interactRange = 2f;
+                float interactRange = 3f;
                 Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
                 foreach (Collider collider in colliderArray)
                 {
                     if (collider.TryGetComponent(out NPCInteractable npcInteractable))
                     {
                         npcInteractable.Interact();
+                        selectInputAction.action.Reset();
                     }
                 }
             }
@@ -33,7 +34,7 @@ namespace TN
         // check for interactable NPCs nearby.
         public NPCInteractable GetInteractableObject()
         {
-            float interactRange = 2f;
+            float interactRange = 3f;
             Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
             foreach (Collider collider in colliderArray)
             {

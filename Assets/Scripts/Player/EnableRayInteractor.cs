@@ -12,6 +12,13 @@ namespace TN
         public GameObject rightRayInteractor;
         public GameObject leftRayInteractor;
 
+        // Deactivate at game start.
+        private void Start()
+        {
+            rightRayInteractor.SetActive(false);
+            leftRayInteractor.SetActive(false);
+        }
+
         // Activate by entering the collider.
         private void OnTriggerEnter(Collider other)
         {

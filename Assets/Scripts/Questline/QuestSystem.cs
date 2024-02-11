@@ -37,8 +37,6 @@ namespace TN
 
         private int activeQuest = 0;
 
-        private int scans = 0;
-
         // Display the active quest.
         public void ShowQuest()
         {
@@ -98,8 +96,7 @@ namespace TN
         // Evaluate the scan quest.
         public void EvaluateScanQuest()
         {
-            scans++;
-            if (scans == 1)
+            if (activeQuest == 1)
             {
                 UpdateActiveQuest();
                 dialogueSystem.StartDialog(2);
@@ -109,8 +106,11 @@ namespace TN
         // Evaluate the energy quest.
         public void EvaluateEnergyQuest()
         {
-            UpdateActiveQuest();
-            dialogueSystem.StartDialog(5);
+            if (activeQuest == 3)
+            {
+                UpdateActiveQuest();
+                dialogueSystem.StartDialog(5);
+            }
         }
 
         // Evaluate the scripting quests by calling the ingame written functions.
@@ -120,7 +120,7 @@ namespace TN
 
             switch (quest.title)
             {
-                case "Orbit Control":
+                case "Orbit Algorithmus":
                     {
                         if ((bool)activeQuestScript.Call("OrbitControl", 150) && (bool)activeQuestScript.Call("OrbitControl", 60)
                         && !(bool)activeQuestScript.Call("OrbitControl", 12) && !(bool)activeQuestScript.Call("OrbitControl", 5))
@@ -158,7 +158,7 @@ namespace TN
                             return false;
                         }
                     }
-                case "Average Calculation":
+                case "Durchschnittsberechnung":
                     {
                         List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 
