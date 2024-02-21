@@ -56,8 +56,8 @@ QualitySettings:
     terrainFadeLength: 5
     terrainMaxTrees: 50
     excludedTargetPlatforms:
-    - Server
     - Standalone
+    - Server
   - serializedVersion: 3
     name: High Fidelity
     pixelLightCount: 2

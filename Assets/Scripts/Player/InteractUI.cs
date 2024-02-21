@@ -13,6 +13,7 @@ namespace TN
         public PlayerInteract playerInteract;
         public LookAtController lookAtController;
 
+
         // Call a function to check if interactable object (NPC) is nearby.
         private void Update()
         {
@@ -26,11 +27,13 @@ namespace TN
             }
         }
 
-        // Show required controller input (and let the npc look at the player).
+        // Show required controller input (and let the npc and button look at the player).
         private void Show()
         {
             lookAtController.SetStatus(true);
             buttonCanvas.SetActive(true);
+            transform.LookAt(new Vector3(lookAtController.objectToLookAt.position.x,
+                lookAtController.objectToLookAt.position.y + 1.7f, lookAtController.objectToLookAt.position.z));
         }
 
         // Hide required controller input (and stop the npc from looking at the player).

@@ -85,13 +85,6 @@ namespace TN
                     }
                 }
 
-                // // Check for base class
-                // if (type.IsSubTypeOf<QuestScript>() == false)
-                // {
-                //     ConsoleMessage("Code must define a single type that inherits from 'TN.QuestScript'");
-                //     throw new Exception("Code must define a single type that inherits from 'TN.QuestScript'");
-                // }
-
                 // Create an instance
                 activeQuestScript = type.CreateInstance();
                 activeSourceCode = sourceCode;

@@ -32,7 +32,8 @@ namespace TN
         IEnumerator GoToSceneRoutine(int sceneIndex)
         {
             fadeScreen.FadeOut();
-            //Launch the new scene
+
+            // Launch the new scene.
             AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
             operation.allowSceneActivation = false;
 

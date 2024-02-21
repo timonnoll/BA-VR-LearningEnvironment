@@ -6,7 +6,6 @@ using TMPro;
 using RoslynCSharp;
 using RoslynCSharp.Compiler;
 using System;
-using UnityEngine.Timeline;
 
 namespace TN
 {
@@ -36,6 +35,12 @@ namespace TN
         public Animator doorAnimator;
 
         private int activeQuest = 0;
+
+        // Display the coding display.
+        private void Start()
+        {
+            codingWindow.SetActive(false);
+        }
 
         // Display the active quest.
         public void ShowQuest()
@@ -73,17 +78,17 @@ namespace TN
         public void UpdateActiveQuest()
         {
             GetActiveQuest().Complete();
-            //Complete Sound?
-            if (quests[activeQuest + 1] != null)
+            AudioManager.instance.Play("Success");
+            if (activeQuest + 1 < quests.Length)
             {
-                activeQuest += 1;
+                activeQuest++;
                 ShowQuest();
             }
             else
             {
                 codingWindow.SetActive(false);
-                activeTitle.text = "Congratulations!";
-                activeDescription.text = "You have completed all tasks";
+                activeTitle.text = "Glückwunsch!";
+                activeDescription.text = "Sie haben alle Aufgaben erledigt";
             }
         }
 
@@ -158,7 +163,7 @@ namespace TN
                             return false;
                         }
                     }
-                case "Durchschnittsberechnung":
+                case "Durchschnittswert":
                     {
                         List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 

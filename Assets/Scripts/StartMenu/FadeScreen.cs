@@ -55,7 +55,7 @@ namespace TN
                 Color newColor = fadeColor;
                 newColor.a = Mathf.Lerp(alphaIn, alphaOut, fadeCurve.Evaluate(timer / fadeDuration));
 
-                // update material color with new alpha value
+                // Update material color with new alpha value.
                 rend.material.SetColor(colorPropertyName, newColor);
 
                 timer += Time.deltaTime;

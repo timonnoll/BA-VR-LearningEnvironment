@@ -34,9 +34,9 @@ namespace TN
         }
 
         // Set power source to activated.
-        public void ActivateEnergy()
+        public void SetEnergy(bool state)
         {
-            energy = true;
+            energy = state;
         }
     }
 }
