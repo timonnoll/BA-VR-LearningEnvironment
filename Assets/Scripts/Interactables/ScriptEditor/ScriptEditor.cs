@@ -17,9 +17,12 @@ namespace TN
 
         public TMP_InputField inputField;
 
+        [Header("Keyboard Buttons")]
         public GameObject keyboard;
         public GameObject helpboard;
+        public GameObject secondaryKeyboard;
 
+        [Header("Help Pages")]
         public GameObject variableHelp;
         public GameObject operationHelp;
         public GameObject dataStructureHelp;
@@ -30,6 +33,16 @@ namespace TN
         private int currentCaretPosition = 0;
 
         private bool buildValid = false;
+
+        // Enable caret selection via ray interactor.
+        private void Start()
+        {
+            inputField.shouldHideMobileInput = true;
+
+            keyboard.SetActive(true);
+            helpboard.SetActive(false);
+            secondaryKeyboard.SetActive(false);
+        }
 
         // Update Caret Position after input or function.
         private void UpdateCaretPosition(int newPos) => inputField.caretPosition = newPos;
@@ -93,6 +106,16 @@ namespace TN
                         Space();
                         break;
                     }
+                case KeyAction.Function.SwapToMainkeys:
+                    {
+                        Swap(true);
+                        break;
+                    }
+                case KeyAction.Function.SwapToSecondarykeys:
+                    {
+                        Swap(false);
+                        break;
+                    }
 
                 case KeyAction.Function.Next:
                     {
@@ -144,6 +167,7 @@ namespace TN
         public void Help()
         {
             keyboard.SetActive(false);
+            secondaryKeyboard.SetActive(false);
             helpboard.SetActive(true);
             scriptBuilder.questSystem.HideQuest();
         }
@@ -156,6 +180,21 @@ namespace TN
             helpboard.SetActive(false);
             keyboard.SetActive(true);
             scriptBuilder.questSystem.ShowQuest();
+        }
+
+        // Swaps certain keys.
+        public void Swap(bool swap)
+        {
+            if (swap)
+            {
+                keyboard.SetActive(true);
+                secondaryKeyboard.SetActive(false);
+            }
+            else
+            {
+                keyboard.SetActive(false);
+                secondaryKeyboard.SetActive(true);
+            }
         }
 
         // Show assistance pages.

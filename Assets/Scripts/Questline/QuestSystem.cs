@@ -142,10 +142,10 @@ namespace TN
                     }
                 case "Pincode":
                     {
-                        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
+                        List<int> test = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
                         List<int> result;
 
-                        result = (List<int>)activeQuestScript.Call("GetOddNumbers", input);
+                        result = (List<int>)activeQuestScript.Call("GetOddNumbers", test);
                         if (result.Count == 4 && result.Contains(1) && result.Contains(7) && result.Contains(5) && result.Contains(9))
                         {
                             UpdateActiveQuest();
@@ -159,15 +159,14 @@ namespace TN
                         else
                         {
                             consoleField.text = "The function does not work as intended.";
-                            Debug.Log("false");
                             return false;
                         }
                     }
                 case "Durchschnittswert":
                     {
-                        List<int> input = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
+                        List<int> test = new List<int> { 10, 1, 7, 6, 5, 9, 30, 12 };
 
-                        if ((double)activeQuestScript.Call("GetAverage", input) == 10.0)
+                        if ((double)activeQuestScript.Call("GetAverage", test) == 10.0)
                         {
                             UpdateActiveQuest();
                             dialogueSystem.StartDialog(6);

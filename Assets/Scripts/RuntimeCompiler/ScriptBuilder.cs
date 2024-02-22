@@ -55,8 +55,6 @@ namespace TN
             // Clear error message text field
             questSystem.consoleField.text = "";
 
-            Debug.Log(sourceCode);
-
             if (activeSourceCode != sourceCode || activeQuestScript == null)
             {
                 // Remove any other scripts

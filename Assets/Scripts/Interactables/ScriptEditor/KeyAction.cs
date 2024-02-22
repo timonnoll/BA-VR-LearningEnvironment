@@ -16,6 +16,8 @@ namespace TN
             Space,
             Backspace,
             Enter,
+            SwapToMainkeys,
+            SwapToSecondarykeys,
             Build,
             Next,
             Previous,
